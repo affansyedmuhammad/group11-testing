@@ -36,7 +36,7 @@ def parse_args():
 def run_example_analysis():
     ExampleAnalysis().run()
 
-def run_analyzer_one(args):
+def run_feature_one(args):
     if args.user:
         print(f'Running analysis for user: {args.user}')
         AnalyzerOne().run()
@@ -54,7 +54,7 @@ def run_feature(args):
     """Execute feature based on parsed arguments."""
     feature_map = {
         0: run_example_analysis,
-        1: lambda: run_analyzer_one(args),
+        1: lambda: run_feature_one(args),
         2: run_feature_two,
         3: run_feature_three
     }
