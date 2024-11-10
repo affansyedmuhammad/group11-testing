@@ -7,7 +7,7 @@ This repository contains an application developed for the ENPM611 class project.
 The application focuses on analyzing GitHub issues to help both new and experienced developers contribute effectively to the project. It provides tailored insights based on the developer's experience level:
 
 -   **Feature 1**: Performs Developer-Specific Issue Analysis on poetry_issues.json
--   **Feature 2**: (To be added)
+-   **Feature 2**: Performs proficiency-based user mentions analysis.
 -   **Feature 3**: (To be added)
 
 ## Features
@@ -30,7 +30,10 @@ The application implements three main features (analyses), with the first featur
 
 ### Feature 2: (Placeholder)
 
--   **Description**: To be developed.
+-   **Description**: This code identifies main contributors in GitHub issues by categorizing users based on their mention frequency. By inputting a username, users can check if a contributor meets the desired mention threshold, indicating their experience level, and visualize the top 10 most frequently mentioned contributors in a bar chart.
+-   **Output**:
+    -   **Bar Chart**: Displays the top 10 most frequently mentioned users
+    -   **prints statement**: Based on the entered username, the program indicates whether the person is a main contributor according to the user-defined mention threshold.
 
 ### Feature 3: (Placeholder)
 
@@ -122,12 +125,19 @@ An example analysis is provided to demonstrate basic functionality:
 python run.py --feature 0
 ```
 
-### Running Future Features
-
-As Features 2 and 3 are developed, they can be executed similarly by specifying the appropriate feature number:
+### Running feature 2
 
 ```bash
-python run.py --feature 2
+python run.py --feature 2 --mention_threshold 20
+```
+-   **What It Does**: The program displays a bar graph visualizing the top 10 most-mentioned contributors.
+    -   By adjusting the **mention_threshold**, we can filter and view contributors based on their suitability for tasks
+    -   You can enter a username to check if the user’s mention count is above or below the specified threshold.
+-   **How It Helps**: Helps identify key contributors by evaluating mention frequency to assign task suitability.
+
+### Running Future Features
+As Feature 3 is developed, it can be executed similarly by specifying the appropriate feature number:
+```bash
 python run.py --feature 3
 ```
 
