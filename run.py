@@ -29,6 +29,9 @@ def parse_args():
     # Optional parameter for analyses focusing on a specific label
     ap.add_argument('--label', '-l', type=str, required=False,
                     help='Optional parameter for analyses focusing on a specific label')
+
+    ap.add_argument('--mention_threshold', '-m', type=int, required=False,
+                    help='Optional parameter for analyses focusing on a specific user')
     
     return ap.parse_args()
 
@@ -43,8 +46,15 @@ def run_feature_one(args):
     else:
         print('Error: Please specify a user with --user for feature 1.')
 
-def run_feature_two():
-    AnalyzerTwo().run()
+def run_feature_two(args):
+    # Check if mention_threshold is provided
+    if args.mention_threshold is not None:
+        print(f'Running analysis with mention threshold: {args.mention_threshold}')
+        # Pass the mention_threshold to AnalyzerTwo
+        AnalyzerTwo(mention_threshold=args.mention_threshold).run()
+    else:
+        print('Error: Please specify a threshold with --mention_threshold for feature 2.')
+
 
 def run_feature_three():
     AnalyzerThree().run()
@@ -55,7 +65,7 @@ def run_feature(args):
     feature_map = {
         0: run_example_analysis,
         1: lambda: run_feature_one(args),
-        2: run_feature_two,
+        2: lambda: run_feature_two(args),
         3: run_feature_three
     }
 
