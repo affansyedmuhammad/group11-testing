@@ -100,6 +100,14 @@ The application implements three main features (analyses), with the first featur
 
 The application is executed via the `run.py` script, using the `--feature` command-line argument to specify which analysis to run. For Feature 1, you can further specify the developer experience level using the `--user` argument.
 
+### Running Feature 0 (Example Analysis)
+
+An example analysis is provided to demonstrate basic functionality:
+
+```bash
+python run.py --feature 0
+```
+
 ### Running Feature 1
 
 #### For New Developers
@@ -126,19 +134,12 @@ python run.py --feature 1 --user experienced
     -   A scatter plot highlighting complex open issues.
 -   **How It Helps**: Assists experienced developers in identifying complex issues where their expertise can make a significant impact.
 
-### Running Feature 0 (Example Analysis)
-
-An example analysis is provided to demonstrate basic functionality:
-
-```bash
-python run.py --feature 0
-```
-
 ### Running feature 2
 
 ```bash
 python run.py --feature 2 --mention_threshold 20
 ```
+
 -   **What It Does**: The program displays a bar graph visualizing the top 10 most-mentioned contributors.
     -   By adjusting the **mention_threshold**, we can filter and view contributors based on their suitability for tasks
     -   You can enter a username to check if the user’s mention count is above or below the specified threshold.
@@ -149,6 +150,7 @@ python run.py --feature 2 --mention_threshold 20
 ```bash
 python run.py --feature 3
 ```
+
 -   **What It Does**: Executes the Contributor and Community Engagement Insights analysis, generating visual insights on top contributors and engagement levels by label.
     -   Top Contributors Leaderboard: Creates a bar chart showcasing the top 10 contributors based on the number of issues created and comments made.
     -   Engagement Levels by Label: Produces a bar chart that shows which issue labels (types) have the highest engagement, indicating where community interest and activity are concentrated.
