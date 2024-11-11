@@ -8,7 +8,7 @@ The application focuses on analyzing GitHub issues to help both new and experien
 
 -   **Feature 1**: Performs Developer-Specific Issue Analysis on poetry_issues.json
 -   **Feature 2**: Performs proficiency-based user mentions analysis.
--   **Feature 3**: (To be added)
+-   **Feature 3**: Provides Insights to active contributors and Community engagement levels
 
 ## Features
 
@@ -35,9 +35,18 @@ The application implements three main features (analyses), with the first featur
     -   **Bar Chart**: Displays the top 10 most frequently mentioned users
     -   **prints statement**: Based on the entered username, the program indicates whether the person is a main contributor according to the user-defined mention threshold.
 
-### Feature 3: (Placeholder)
+### Feature 3: Contributor and Community Engagement Insights
 
--   **Description**: To be developed.
+#### Sub-analysis for Top Contributors LeaderBoard
+
+-   **Description**: Identifies the top contributors based on the number of issues they have created or comments they have made on the issues. This analysis helps to recognize contributors areas of interest and expertise .
+-   **Output**: Generates a barchart displaying the top 10 contributors showing their total contributions, which includes issues created and comments made.
+
+#### Sub-analysis for Engagement Levels by Label
+
+-   **Description**: Identifies the labels(issue types) that are most engaging, helping maintainers recognize valuable contributors and understand areas that may require more attention.
+-   **Output**:
+    -   **Bar Chart**: Displays a bar chart that illustrates engagement levels for different labels, showing which types of issues are more collaborative and attract more attention.
 
 ## Setup
 
@@ -135,11 +144,15 @@ python run.py --feature 2 --mention_threshold 20
     -   You can enter a username to check if the user’s mention count is above or below the specified threshold.
 -   **How It Helps**: Helps identify key contributors by evaluating mention frequency to assign task suitability.
 
-### Running Future Features
-As Feature 3 is developed, it can be executed similarly by specifying the appropriate feature number:
+### Running Feature 3
+
 ```bash
 python run.py --feature 3
 ```
+-   **What It Does**: Executes the Contributor and Community Engagement Insights analysis, generating visual insights on top contributors and engagement levels by label.
+    -   Top Contributors Leaderboard: Creates a bar chart showcasing the top 10 contributors based on the number of issues created and comments made.
+    -   Engagement Levels by Label: Produces a bar chart that shows which issue labels (types) have the highest engagement, indicating where community interest and activity are concentrated.
+-   **How It Helps**: This feature provides valuable insights for project maintainers by highlighting the top contributors based on their involvement and identifying labels that attract the most community attention. It helps in recognizing key contributors and understanding areas that may benefit from increased support or attention.
 
 ## VSCode Run Configuration
 
