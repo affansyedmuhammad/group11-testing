@@ -1,46 +1,176 @@
-# ENPM611 Project Application Template
+# ENPM611 GitHub Issues Analyzer
 
-This is the template for the ENPM611 class project. Use this template in conjunction with the provided data to implement an application that analyzes GitHub issues for the [poetry](https://github.com/python-poetry/poetry/issues) Open Source project and generates interesting insights.
+This repository contains an application developed for the ENPM611 class project. The application analyzes GitHub issues from the [Poetry](https://github.com/python-poetry/poetry/issues) open-source project to generate insightful analyses that assist developers.
 
-This application template implements some of the basic functions:
+## Overview
 
--   `data_loader.py`: Utility to load the issues from the provided data file and returns the issues in a runtime data structure (e.g., objects)
--   `model.py`: Implements the data model into which the data file is loaded. The data can then be accessed by accessing the fields of objects.
--   `config.py`: Supports configuring the application via the `config.json` file. You can add other configuration paramters to the `config.json` file.
--   `run.py`: This is the module that will be invoked to run your application. Based on the `--feature` command line parameter, one of the three analyses you implemented will be run. You need to extend this module to call other analyses.
+The application focuses on analyzing GitHub issues to help both new and experienced developers contribute effectively to the project. It provides tailored insights based on the developer's experience level:
 
-With the utility functions provided, you should focus on implementing creative analyses that generate intersting and insightful insights.
+-   **Feature 1**: Performs Developer-Specific Issue Analysis on poetry_issues.json
+-   **Feature 2**: Performs proficiency-based user mentions analysis.
+-   **Feature 3**: Provides Insights to active contributors and Community engagement levels
 
-In addition to the utility functions, an example analysis has also been implemented in `example_analysis.py`. It illustrates how to use the provided utility functions and how to produce output.
+## Features
+
+The application implements three main features (analyses), with the first feature currently developed:
+
+### Feature 1: Developer-Specific Issue Analysis
+
+#### Sub-analysis for New Developers
+
+-   **Description**: Analyzes issues that have a shorter time-to-close, indicating they are easier to resolve.
+-   **Output**: Generates a bar chart showing the average time to close issues per label, helping new developers identify suitable issues to work on.
+
+#### Sub-analysis for Experienced Developers
+
+-   **Description**: Analyzes issues with high collaboration levels (more comments and events), which are typically more complex and require experienced input.
+-   **Output**:
+    -   **Bar Chart**: Displays the top 10 most active labels based on the total number of events/comments.
+    -   **Scatter Plot**: Visualizes open issues' complexity, highlighting issues with high collaboration and long open times.
+
+### Feature 2: (Placeholder)
+
+-   **Description**: This code identifies main contributors in GitHub issues by categorizing users based on their mention frequency. By inputting a username, users can check if a contributor meets the desired mention threshold, indicating their experience level, and visualize the top 10 most frequently mentioned contributors in a bar chart.
+-   **Output**:
+    -   **Bar Chart**: Displays the top 10 most frequently mentioned users
+    -   **prints statement**: Based on the entered username, the program indicates whether the person is a main contributor according to the user-defined mention threshold.
+
+### Feature 3: Contributor and Community Engagement Insights
+
+#### Sub-analysis for Top Contributors LeaderBoard
+
+-   **Description**: Identifies the top contributors based on the number of issues they have created or comments they have made on the issues. This analysis helps to recognize contributors areas of interest and expertise .
+-   **Output**: Generates a barchart displaying the top 10 contributors showing their total contributions, which includes issues created and comments made.
+
+#### Sub-analysis for Engagement Levels by Label
+
+-   **Description**: Identifies the labels(issue types) that are most engaging, helping maintainers recognize valuable contributors and understand areas that may require more attention.
+-   **Output**:
+    -   **Bar Chart**: Displays a bar chart that illustrates engagement levels for different labels, showing which types of issues are more collaborative and attract more attention.
 
 ## Setup
 
-To get started, your team should create a fork of this repository. Then, every team member should clone your repository to their local computer.
+### Prerequisites
 
-### Install dependencies
+-   Python 3.7 or higher
+-   pip (Python package installer)
 
-In the root directory of the application, create a virtual environment, activate that environment, and install the dependencies like so:
+### Install Dependencies
 
-```
-pip install -r requirements.txt
-```
+1. **Create a virtual environment** (optional but recommended):
 
-### Download and configure the data file
+    ```bash
+    python -m venv venv
+    ```
 
-Download the data file (in `json` format) from the project assignment in Canvas and update the `config.json` with the path to the file. Note, you can also specify an environment variable by the same name as the config setting (`ENPM611_PROJECT_DATA_PATH`) to avoid committing your personal path to the repository.
+2. **Activate the virtual environment**:
 
-### Run an analysis
+    - On **Windows**:
 
-With everything set up, you should be able to run the existing example analysis:
+        ```bash
+        venv\Scripts\activate
+        ```
 
-```
+    - On **Unix or macOS**:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+3. **Install the required packages**:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Configure the Data File
+
+1. **Download the data file** (`poetry_issues.json`) from the project assignment on Canvas.
+2. **Update the `config.json` file** with the path to the data file:
+
+    ```json
+    {
+        "data_path": "path/to/poetry_issues.json"
+    }
+    ```
+
+    Alternatively, you can set an environment variable `ENPM611_PROJECT_DATA_PATH` with the path to the data file to avoid committing personal paths to the repository.
+
+## How to Run the Application
+
+The application is executed via the `run.py` script, using the `--feature` command-line argument to specify which analysis to run. For Feature 1, you can further specify the developer experience level using the `--user` argument.
+
+### Running Feature 0 (Example Analysis)
+
+An example analysis is provided to demonstrate basic functionality:
+
+```bash
 python run.py --feature 0
 ```
 
-That will output basic information about the issues to the command line.
+### Running Feature 1
 
-## VSCode run configuration
+#### For New Developers
 
-To make the application easier to debug, runtime configurations are provided to run each of the analyses you are implementing. When you click on the run button in the left-hand side toolbar, you can select to run one of the three analyses or run the file you are currently viewing. That makes debugging a little easier. This run configuration is specified in the `.vscode/launch.json` if you want to modify it.
+To run the analysis tailored for new developers:
 
-The `.vscode/settings.json` also customizes the VSCode user interface sligthly to make navigation and debugging easier. But that is a matter of preference and can be turned off by removing the appropriate settings.
+```bash
+python run.py --feature 1 --user new
+```
+
+-   **What It Does**: Analyzes issues with a shorter time-to-close and generates a bar chart of labels versus average time to close.
+-   **How It Helps**: Helps new developers find issues that are quicker to resolve, easing their onboarding process into the project.
+
+#### For Experienced Developers
+
+To run the analysis tailored for experienced developers:
+
+```bash
+python run.py --feature 1 --user experienced
+```
+
+-   **What It Does**: Analyzes issues with high collaboration levels and generates:
+    -   A bar chart of the top 10 most active labels.
+    -   A scatter plot highlighting complex open issues.
+-   **How It Helps**: Assists experienced developers in identifying complex issues where their expertise can make a significant impact.
+
+### Running feature 2
+
+```bash
+python run.py --feature 2 --mention_threshold 20
+```
+
+-   **What It Does**: The program displays a bar graph visualizing the top 10 most-mentioned contributors.
+    -   By adjusting the **mention_threshold**, we can filter and view contributors based on their suitability for tasks
+    -   You can enter a username to check if the user’s mention count is above or below the specified threshold.
+-   **How It Helps**: Helps identify key contributors by evaluating mention frequency to assign task suitability.
+
+### Running Feature 3
+
+```bash
+python run.py --feature 3
+```
+
+-   **What It Does**: Executes the Contributor and Community Engagement Insights analysis, generating visual insights on top contributors and engagement levels by label.
+    -   Top Contributors Leaderboard: Creates a bar chart showcasing the top 10 contributors based on the number of issues created and comments made.
+    -   Engagement Levels by Label: Produces a bar chart that shows which issue labels (types) have the highest engagement, indicating where community interest and activity are concentrated.
+-   **How It Helps**: This feature provides valuable insights for project maintainers by highlighting the top contributors based on their involvement and identifying labels that attract the most community attention. It helps in recognizing key contributors and understanding areas that may benefit from increased support or attention.
+
+## VSCode Run Configuration
+
+For easier debugging and execution, runtime configurations are provided for VSCode:
+
+1. Open the **Run and Debug** view in VSCode.
+2. Choose the desired analysis from the available configurations.
+3. Start the debugger to run the selected analysis.
+
+The configurations are specified in the `.vscode/launch.json` file.
+
+## Additional Notes
+
+-   **Environment Variables**: Use environment variables to set configuration parameters without modifying the `config.json` file.
+-   **Extensibility**: The application is designed to be extensible. New analyses can be added by implementing additional features and updating the `run.py` script accordingly.
+-   **Data Model and Utilities**:
+    -   `data_loader.py`: Loads issues from the data file into runtime data structures.
+    -   `model.py`: Defines the data models for issues and events.
+    -   `config.py`: Manages configuration settings, allowing for easy customization.
