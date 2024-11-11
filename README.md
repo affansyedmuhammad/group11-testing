@@ -28,7 +28,7 @@ The application implements three main features (analyses), with the first featur
     -   **Bar Chart**: Displays the top 10 most active labels based on the total number of events/comments.
     -   **Scatter Plot**: Visualizes open issues' complexity, highlighting issues with high collaboration and long open times.
 
-### Feature 2: (Placeholder)
+### Feature 2: identifying key contributors by evaluating mention frequency
 
 -   **Description**: This code identifies main contributors in GitHub issues by categorizing users based on their mention frequency. By inputting a username, users can check if a contributor meets the desired mention threshold, indicating their experience level, and visualize the top 10 most frequently mentioned contributors in a bar chart.
 -   **Output**:
