@@ -36,7 +36,7 @@ class AnalyzerThree:
         plt.xlabel('Contributors')
         plt.ylabel('Total Contributions (Issues Created + Comments)')
         plt.tight_layout()
-        plt.savefig("top_contributors.png")
+        #plt.savefig("top_contributors.png")
         plt.show()
 
 
@@ -58,7 +58,7 @@ class AnalyzerThree:
         plt.xlabel('Labels')
         plt.ylabel('Engagement (Total Events)')
         plt.tight_layout()
-        plt.savefig("top_labels.png")
+        #plt.savefig("top_labels.png")
         plt.show()
 
     def generate_plots(self, issues: List[Issue]):
