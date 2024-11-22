@@ -23,8 +23,13 @@ class TestConfig(unittest.TestCase):
         self.assertEqual('value', config.get_parameter('test'))
 
     def test_get_parameter_failure(self):
-        config.set_parameter('test', 'value')
         self.assertEqual(None, config.get_parameter('test1'))
+
+    def test_get_parameter_default(self):
+        self.assertEqual(33, config.get_parameter('test1', 33))
 
     def test_convert_to_typed_value_none(self):
         self.assertEqual(None, config.convert_to_typed_value(None))
+
+    def test_convert_to_typed_value_not_str(self):
+        self.assertEqual(12345, config.convert_to_typed_value(12345))
