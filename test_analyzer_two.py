@@ -43,6 +43,17 @@ class TestAnalyzerTwo(unittest.TestCase):
             'user3': 1,
         }
         self.assertEqual(mention_counts, expected_counts)
+    
+    @patch('matplotlib.pyplot.show')
+    def test_visualize_mentions(self, mock_show):
+        mock_counts = {
+            'user1': 10,
+            'user2': 8,
+            'user3': 5,
+        }
+        self.analyzer.visualize_mentions(mock_counts)
+        mock_show.assert_called_once()
+
 
 if __name__ == '__main__':
     unittest.main()
