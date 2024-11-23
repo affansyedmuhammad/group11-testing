@@ -54,6 +54,21 @@ class TestAnalyzerTwo(unittest.TestCase):
         self.analyzer.visualize_mentions(mock_counts)
         mock_show.assert_called_once()
 
+    @patch('builtins.input', side_effect=['user1', 'user3', 'unknown_user', 'quit'])
+    @patch('builtins.print')
+    def test_check_user_experience(self, mock_print, mock_input):
+        mention_counts = {
+            'user1': 4,
+            'user2': 2,
+            'user3': 1,
+        }
+        self.analyzer.check_user_experience(mention_counts)
+
+        # Verify the expected output was printed
+        mock_print.assert_any_call("user1 is an experienced contributor with 4 mentions.")
+        mock_print.assert_any_call("user3 has been mentioned 1 times, which is below the experience threshold.")
+        mock_print.assert_any_call("unknown_user has not been mentioned in any issues.")
+
 
 if __name__ == '__main__':
     unittest.main()
