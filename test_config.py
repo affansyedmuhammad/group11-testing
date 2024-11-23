@@ -1,6 +1,11 @@
 import unittest
 import config
 
+class TestArgs:
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
 class TestConfig(unittest.TestCase):
 
     def test_get_default_path(self):
@@ -33,3 +38,10 @@ class TestConfig(unittest.TestCase):
 
     def test_convert_to_typed_value_not_str(self):
         self.assertEqual(12345, config.convert_to_typed_value(12345))
+    
+    def test_overwrite_from_args(self):
+        args = TestArgs(param1='value1', param2=None, param3=100)
+        config.overwrite_from_args(args)
+        self.assertEqual(config.get_parameter('param1'), 'value1')
+        self.assertEqual(config.get_parameter('param3'), 100)
+        self.assertIsNone(config.get_parameter('param2'))

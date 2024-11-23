@@ -18,6 +18,7 @@ class TestAnalyzerTwo(unittest.TestCase):
         event3.author = 'user1'
         issue1 = MagicMock()
         issue1.events = [event1, event2, event3]
+
         event4 = MagicMock()
         event4.event_type = 'mentioned'
         event4.author = 'user1'
@@ -27,7 +28,6 @@ class TestAnalyzerTwo(unittest.TestCase):
         event6 = MagicMock()
         event6.event_type = 'opened'
         event6.author = 'user4'
-
         issue2 = MagicMock()
         issue2.events = [event4, event5, event6]
 
@@ -69,6 +69,21 @@ class TestAnalyzerTwo(unittest.TestCase):
         mock_print.assert_any_call("user3 has been mentioned 1 times, which is below the experience threshold.")
         mock_print.assert_any_call("unknown_user has not been mentioned in any issues.")
 
+    @patch('analyzer_two.DataLoader')
+    @patch.object(AnalyzerTwo, 'count_mentions', return_value={'user1': 3, 'user2': 2})
+    @patch.object(AnalyzerTwo, 'visualize_mentions')
+    @patch.object(AnalyzerTwo, 'check_user_experience')
+    def test_run(self, mock_check_user_experience, mock_visualize_mentions, mock_count_mentions, mock_data_loader):
+        mock_issues = [MagicMock(), MagicMock()]
+        mock_data_loader().get_issues.return_value = mock_issues
+
+        analyzer = AnalyzerTwo(mention_threshold=3)
+        analyzer.run()
+
+        mock_data_loader().get_issues.assert_called_once()
+        mock_count_mentions.assert_called_once_with(mock_issues)
+        mock_visualize_mentions.assert_called_once_with({'user1': 3, 'user2': 2})
+        mock_check_user_experience.assert_called_once_with({'user1': 3, 'user2': 2})
 
 if __name__ == '__main__':
     unittest.main()
