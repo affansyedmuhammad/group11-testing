@@ -33,4 +33,16 @@ class TestAnalyzerTwo(unittest.TestCase):
 
         self.mock_issues = [issue1, issue2]
 
-   
+    @patch('analyzer_two.DataLoader')
+    def test_count_mentions(self, MockDataLoader):
+        MockDataLoader().get_issues.return_value = self.mock_issues
+        mention_counts = self.analyzer.count_mentions(self.mock_issues)
+        expected_counts = {
+            'user1': 3,
+            'user2': 1,
+            'user3': 1,
+        }
+        self.assertEqual(mention_counts, expected_counts)
+
+if __name__ == '__main__':
+    unittest.main()
