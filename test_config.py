@@ -45,3 +45,4 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(config.get_parameter('param1'), 'value1')
         self.assertEqual(config.get_parameter('param3'), 100)
         self.assertIsNone(config.get_parameter('param2'))
+
