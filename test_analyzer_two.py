@@ -43,6 +43,13 @@ class TestAnalyzerTwo(unittest.TestCase):
             'user3': 1,
         }
         self.assertEqual(mention_counts, expected_counts)
+
+    @patch('analyzer_two.DataLoader')
+    def test_count_mentions_none(self, MockDataLoader):
+        MockDataLoader().get_issues.return_value = {}
+        mention_counts = self.analyzer.count_mentions({})
+        expected_counts = {}
+        self.assertEqual(mention_counts, expected_counts)
     
     @patch('matplotlib.pyplot.show')
     def test_visualize_mentions(self, mock_show):
