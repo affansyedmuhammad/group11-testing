@@ -1,7 +1,7 @@
 import argparse
 from analyzer_one import AnalyzerOne
 from analyzer_two import AnalyzerTwo
-from analyzer_three import AnalyzerThree
+from anaylzer_three import AnalyzerThree
 import config
 from example_analysis import ExampleAnalysis
 
