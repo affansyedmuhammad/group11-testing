@@ -106,6 +106,7 @@ class TestExampleAnalysis(unittest.TestCase):
         analyzer = ExampleAnalysis()
         analyzer.run()
         self.assertTrue(mock_plt_show.called)
+        
 
 if __name__ == '__main__':
     unittest.main()
