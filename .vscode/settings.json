@@ -1,14 +1,15 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+    "python.defaultInterpreterPath": "python",
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./app/test",
+        ".",
         "-p",
-        "*test.py"
+        "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
+    "python.experiments.optInto": ["pythonTestAdapter"],
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,

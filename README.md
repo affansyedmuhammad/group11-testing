@@ -174,3 +174,44 @@ The configurations are specified in the `.vscode/launch.json` file.
     -   `data_loader.py`: Loads issues from the data file into runtime data structures.
     -   `model.py`: Defines the data models for issues and events.
     -   `config.py`: Manages configuration settings, allowing for easy customization.
+
+# Unit Testing and Coverage Testing
+
+## Commands to install coverage
+```
+pip install coverage
+```
+
+Note: unittest is already installed
+
+## Command to run a unittest:
+```
+python -m unittest test_config.py
+python -m unittest test_analyzer_two.py
+```
+
+## Commands to run and view the coverage testing report for both the files:
+
+```
+python -m coverage run -m unittest discover 
+python -m coverage report --omit="test_*"
+python -m coverage xml
+```
+
+Ran 53 tests (errors=5) with a statement coverage of 94%.
+
+-   Bugs Identified: 
+    1. The "Analyze Experienced Developers" method fails when input is empty.
+    -   Cause:- TypeError: The 'Total Events' column has dtype object, cannot use method 'nlargest' with this dtype
+
+    2. The "Analyze Experienced Developers" method fails when input is a single object.
+    -   Cause:- TypeError: 'Issue' object is not iterable
+
+    3. The "Analyze New Developers" method fails when input is empty.
+    -   Cause:- ValueError: not enough values to unpack (expected 2, got 0)
+
+    4. The "Analyze New Developers" method fails when input is a single object.
+    -   Cause:- TypeError: 'Issue' object is not iterable
+
+    5.  The "Top Contributors Leaderboard" method fails when input is empty.
+    -   Cause:- TypeError: The 'Contributions' column in the DataFrame has an 'object' dtype, causing pandas' 'nlargest' method to fail.
